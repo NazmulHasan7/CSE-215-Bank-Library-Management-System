@@ -11,5 +11,5 @@ Console based application for Bank &amp; Library Management System
 <p align="center">
    CSE 215 L<br>
    Programming Language II [Java] Lab<br>
-   Project Title: Bank MAnagement System | Libraryr Management System<br>
+   Project Title: Bank Management System | Library Management System<br>
  <p>
