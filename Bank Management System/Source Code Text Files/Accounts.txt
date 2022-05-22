@@ -1,0 +1,124 @@
+package Bank_System;
+
+public abstract class Account implements ITransactions {
+	
+	private int accountNumber;
+	private double balance;
+	
+	//Default Constructor
+	//Since it's an Abstract class so, all constructors should be protected
+	protected Account() {
+		super();
+		this.accountNumber = 0;
+		this.balance = 0;
+	}
+    //Constructor with accountNumber and balance
+    //Since it's an Abstract class so, all constructors should be protected 
+	protected Account(int accountNumber, double balance) {
+		super();
+		this.accountNumber = accountNumber;
+		this.balance = balance;
+	}
+	//Getter and Setters
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	//Implementing methods of ITransaction interface
+	@Override
+	public void deposit(double amount) {
+		balance += amount;
+	}
+	@Override
+	public void withdraw(double amount) {
+		balance -= amount;
+	}
+	@Override
+	public void transfer(Account a, double amount) {
+		withdraw(amount);
+		a.deposit(amount);	
+	}
+	//An abstract method to showInfo
+	public abstract void showInfo();
+	
+}
+
+
+package Bank_System;
+
+public class FixedAccount extends Account {
+	
+	private int tenureYear;
+    
+	//Default Constructor
+	public FixedAccount(int tenureYear) {
+		super();
+		this.tenureYear = tenureYear;
+	}
+    //Constructor with accountNumber, balance and tenure year
+	public FixedAccount(int accountNumber, double balance, int tenureYear) {
+		super(accountNumber, balance);
+		this.tenureYear = tenureYear;
+	}
+	//Getter and Setters
+	public int getTenureYear() {
+		return tenureYear;
+	}
+	public void setTenureYear(int tenureYear) {
+		this.tenureYear = tenureYear;
+	}
+	//Since FixedAccount inherits Abstract class Account. So, we have to implement the showInfo method
+	@Override
+	public void showInfo() {
+		System.out.println("\n\n\nAccount Information\n\n\n\n___________________\n");
+		System.out.print("Account Type      : Fixed Account.\n");
+		System.out.print("Account number : " +getAccountNumber()+"\n");
+		System.out.print("Account Balance : " +getBalance()+"\n");
+		System.out.print("Tenure year        : " +tenureYear+"________________________\n");
+	}
+
+}
+
+
+package Bank_System;
+
+public class SavingsAccount extends Account{
+
+	private double interestRate;
+
+	//Default Constructor
+	public SavingsAccount(double interestRate) {
+		super();
+		this.interestRate = interestRate;
+	}
+	//Constructor with accountNumber, balance and tenure year
+	public SavingsAccount(int accountNumber, double balance, double interestRate) {
+		super(accountNumber, balance);
+		this.interestRate = interestRate;
+	}
+	//Getter and Setters
+	public double getInterestRate() {
+		return interestRate;
+	}
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+	//Since FixedAccount inherits Abstract class Account. So, we have to implement the showInfo method
+		@Override
+		public void showInfo() {
+			System.out.println("\n\n\nAccount Information\n\n\n\n___________________\n");
+			System.out.print("Account Type      : Savings Account.\n");
+			System.out.print("Account number : " +getAccountNumber()+"\n");
+			System.out.print("Account Balance : " +getBalance()+"\n");
+			System.out.print("Interest Rate       : " +interestRate+"________________________\n");
+		}
+		
+}

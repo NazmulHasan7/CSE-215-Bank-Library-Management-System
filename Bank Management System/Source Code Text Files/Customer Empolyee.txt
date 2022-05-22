@@ -1,0 +1,118 @@
+package Bank_System;
+
+import java.util.Scanner;
+public class Customer implements AccountOperations {
+	
+	private String name;
+	private int nid;
+	private Account accounts[ ];
+	int numberOfAccounts = 0;
+	
+	public Customer() {
+		super();
+		name = null;
+		nid = 0;
+		accounts = new Account[10];
+	}
+	public Customer(String name, int nid, Account[] accounts) {
+		super();
+		this.name = name;
+		this.nid = nid;
+		this.accounts = accounts;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getNid() {
+		return nid;
+	}
+	public void setNid(int nid) {
+		this.nid = nid;
+	}
+	@Override
+	public void insertAccount(Account a) {
+		Scanner input = new Scanner(System.in);
+		boolean takeInput = true; 
+		
+		while(!takeInput) {
+			try {
+				System.out.println("Choose your Account type : \n1)Savings Account 2)Fixed Account");
+				int accType = input.nextInt();
+				
+				if(accType !=1 && accType !=2)
+					throw new Exception();
+				
+				if(accType == 1) {
+					accounts[numberOfAccounts] = new SavingsAccount(7.00);
+				}
+				else {
+					accounts[numberOfAccounts] = new FixedAccount(3);
+				}
+				numberOfAccounts++;
+				takeInput = false;
+			}
+			catch(Exception ex) {
+				System.out.println("Please select between 1 and 2.Try again.");
+			}
+		}	
+	}
+	@Override
+	public Account getAccount(int accountNumber) {
+		for(int i=0; i<numberOfAccounts; i++) {
+			if(accounts[i].getAccountNumber() == accountNumber) {
+				return accounts[i];
+			}
+		}
+		System.out.println("No account is found with the given account number.");
+		return null;
+	}
+	@Override
+	public void showAllAccounts() {
+		for(int i=0; i<numberOfAccounts; i++) {
+			accounts[i].showInfo();
+			System.out.println();
+			}
+		}	
+	}
+
+package Bank_System;
+
+public class Employee {
+
+	private String name;
+	private String empId;
+	private double salary;
+	
+	public Employee() {
+		super();
+	}
+	public Employee(String name, String empId, double salary) {
+		super();
+		this.name = name;
+		this.empId = empId;
+		this.salary = salary;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	
+}
+

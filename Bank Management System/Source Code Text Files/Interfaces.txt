@@ -1,0 +1,36 @@
+package Bank_System;
+
+public interface ITransactions {
+
+	void deposit(double amount);
+	void withdraw(double amount);
+	void transfer(Account a, double amount);
+	
+}
+package Bank_System;
+
+public interface AccountOperations {
+
+	void insertAccount(Account a);
+	Account getAccount(int accountNumber);
+	void showAllAccounts( );
+	
+}
+package Bank_System;
+
+public interface CustomerOperations {
+
+	void insertCustomer(Customer c);
+	Customer getCustomer(int nid);
+	void showAllCustomers( );
+	
+}
+package Bank_System;
+
+public interface EmployeeOperations {
+	
+	void insertEmployee(Employee e);
+	Employee getEmployee(int empId);
+	void showAllEmployees( );
+	
+}
