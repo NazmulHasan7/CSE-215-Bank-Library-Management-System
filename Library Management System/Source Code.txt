@@ -1,0 +1,866 @@
+[1]
+public interface IBasicOperations {
+	void borrowBook(Book b);
+	void returnBook(Book b);
+}
+[2]
+public interface IBookOperations {
+	void insertBook(Book b);
+	void removeBook(Book b);
+	Book getBook(int bookId);
+	void showAllBooks( );
+}
+[3]
+public interface IStudentOperations {
+	void insertStudent(Student s);
+	void removeStudent(Student s);
+	Student getStudent(String studentId);
+	void showAllStudents( );
+}
+[4]
+public interface ITeacherOperations {
+	void insertTeacher(Teacher t);
+	void removeTeacher(Teacher t);
+	Teacher getTeacher(String teacherId);
+	void showAllTeachers( );
+}
+[5]
+public class Book {
+	
+	private int id;
+	private String title;
+	private String subtitle;
+	private String  authorName;
+	private String publisherName;
+	private double price;
+	public  int noOfCopy;
+	
+	public Book() {
+		super();
+	}
+	public Book(int id, String title, String subtitle, String authorName, String publisherName, double price,
+			int noOfCopy) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.authorName = authorName;
+		this.publisherName = publisherName;
+		this.price = price;
+		this.noOfCopy = noOfCopy;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
+	public String getAuthorName() {
+		return authorName;
+	}
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+	public String getPublisherName() {
+		return publisherName;
+	}
+	public void setPublisherName(String publisherName) {
+		this.publisherName = publisherName;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public int getNoOfCopy() {
+		return noOfCopy;
+	}
+	public void setNoOfCopy(int noOfCopy) {
+		this.noOfCopy = noOfCopy;
+	}
+	@Override
+	public String toString() {
+		return "Book Information : \nBook [id = "+ id +", title = "+title+", subtitle = "+subtitle+", authorName = " +authorName
+			+", publisherName = "+publisherName+", price = "+price+", noOfCopy = "+noOfCopy+"]\n";
+	}
+}
+[6]
+public class Librarian {
+	private String name;
+	private String LibrarianId;
+	private double salary;
+	private int age;
+	
+	public Librarian() {
+		super();
+	}
+	public Librarian(String name, String librarianId, double salary, int age) {
+		super();
+		this.name = name;
+		LibrarianId = librarianId;
+		this.salary = salary;
+		this.age = age;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLibrarianId() {
+		return LibrarianId;
+	}
+	public void setLibrarianId(String librarianId) {
+		LibrarianId = librarianId;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	@Override
+	public String toString() {
+		return " Librarian Information : \n Librarian Name = " + name +
+				"\n Librarian Id = " + LibrarianId + "\n Salary = " + salary + "\nAge = " + age + "\n";
+	}	
+}
+[7]
+public class Library implements ITeacherOperations, IStudentOperations, IBookOperations{
+	private String libraryName;
+	private String address;
+	private Student students[ ];
+	private Teacher teachers[];
+	private Book books[ ];
+	private int noOfBooks;
+	private int noOfStudents;
+	private int noOfTeachers;
+	private Librarian librarian;
+	
+	public Library() {
+		super();
+	}
+	public Library(String libraryName, String address, int noOfBooks, Librarian librarian) {
+		super();
+		this.libraryName = libraryName;
+		this.address = address;
+		this.noOfBooks = noOfBooks;
+		this.librarian = librarian;
+		books = new Book[100];
+		teachers = new Teacher[100];
+		students = new Student[100];
+	}
+	public Library(String libraryName, String address, Student[] students, Teacher[] teachers, Book[] books,
+			 Librarian librarian) {
+		super();
+		this.libraryName = libraryName;
+		this.address = address;
+		this.students = students;
+		this.teachers = teachers;
+		this.books = books;
+		noOfBooks = books.length;
+		noOfStudents = students.length;
+		noOfTeachers = teachers.length;
+		this.librarian = librarian;
+	}
+	public String getLibraryName() {
+		return libraryName;
+	}
+	public void setLibraryName(String libraryName) {
+		this.libraryName = libraryName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Student[] getStudents() {
+		return students;
+	}
+	public void setStudents(Student[] students) {
+		this.students = students;
+	}
+	public Teacher[] getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(Teacher[] teachers) {
+		this.teachers = teachers;
+	}
+	public Book[] getBooks() {
+		return books;
+	}
+	public void setBooks(Book[] books) {
+		this.books = books;
+	}
+	public int getNoOfBooks() {
+		return noOfBooks;
+	}
+	public void setNoOfBooks(int noOfBooks) {
+		this.noOfBooks = noOfBooks;
+	}
+	public int getNoOfStudents() {
+		return noOfStudents;
+	}
+	public void setNoOfStudents(int noOfStudents) {
+		this.noOfStudents = noOfStudents;
+	}
+	public int getNoOfTeachers() {
+		return noOfTeachers;
+	}
+	public void setNoOfTeachers(int noOfTeachers) {
+		this.noOfTeachers = noOfTeachers;
+	}
+	public Librarian getLibrarian() {
+		return librarian;
+	}
+	public void setLibrarian(Librarian librarian) {
+		this.librarian = librarian;
+	}
+	public void LibararyInfo() {
+		System.out.println("Library Information \nLibrary Name : " +libraryName+ ",\nAddress : " +address+ "\nStudents : "); 
+		showAllStudents();
+		showAllTeachers();
+		showAllBooks();
+		System.out.println("\nLibrarian :  " +librarian.toString());
+	}
+	@Override
+	public void insertBook(Book b) {
+		int i=0;
+		while(books[i] != null) {
+			i++;
+		}
+		books[i] = b;
+		noOfBooks++;
+		System.out.println("Book Added...........");
+	}
+	@Override
+	public void removeBook(Book b) {
+		int i;
+		for(i=0; i<noOfBooks; i++) {
+			if(books[i].getId() == b.getId()) {
+				break;
+			}
+		}
+		books[i] = books[noOfBooks-1];
+		books[noOfBooks-1] = null;
+		noOfBooks--;
+		System.out.println("Book Removed............");
+	}
+	@Override
+	public Book getBook(int bookId) {
+		for(int i=0; i<noOfBooks; i++) {
+			if(books[i].getId() == bookId) {
+				return books[i];
+			}
+		}
+		System.out.println("Book Id doesn't match.");
+			return null;
+	}
+	@Override
+	public void showAllBooks() {
+		System.out.println("\nBooks : ");
+		for(int i=0; i<noOfBooks; i++) {
+			System.out.println(books[i].toString());
+		}
+	}
+	@Override
+	public void insertStudent(Student s) {
+		int i=0;
+		while(students[i] != null) {
+			i++;
+		}
+		students[i] = s;
+		noOfStudents++;
+		System.out.println("Student Added..........");
+	}
+	@Override
+	public void removeStudent(Student s) {
+		int i;
+		for(i=0; i<noOfStudents; i++) {
+			if((students[i].getID()).equals(s.getID())) {
+				break;
+			}
+		}
+		students[i] = students[noOfStudents-1];
+		students[noOfStudents-1] = null;
+		noOfStudents--;
+		System.out.println("Student Removed");
+	}
+	@Override
+	public Student getStudent(String studentId) {
+		for(int i=0; i<noOfStudents; i++) {
+			if(students[i].getID().equals(studentId)) {
+				return students[i];
+			}
+		}
+		System.out.println("Student Id doesn't match.");
+			return null;
+	}
+	@Override
+	public void showAllStudents() {
+		for(int i=0; i<noOfStudents; i++) {
+			System.out.println();
+			students[i].showInfo();
+		}	
+	}
+	@Override
+	public void insertTeacher(Teacher t) {
+		int i=0;
+		while(teachers[i] != null) {
+			i++;
+		}
+		teachers[i] = t;
+		noOfTeachers++;
+		System.out.println("Teacher Added");
+	}
+	@Override
+	public void removeTeacher(Teacher t) {
+		int i;
+		for(i=0; i<noOfTeachers; i++) {
+			if((teachers[i].getID()).equals(t.getID())) {
+				break;
+			}
+		}
+		teachers[i] = teachers[noOfTeachers-1];
+		teachers[noOfTeachers-1] = null;
+		noOfTeachers--;
+		System.out.println("Teacher Removed");
+	}
+	@Override
+	public Teacher getTeacher(String teacherId) {
+		for(int i=0; i<noOfTeachers; i++) {
+			if(teachers[i].getID().equals(teacherId)) {
+				return teachers[i];
+			}
+		}
+		System.out.println("Teacher Id doesn't match.");
+			return null;
+	}
+	@Override
+	public void showAllTeachers() {
+		System.out.println("\nTeachers : ");
+		for(int i=0; i<noOfTeachers; i++) {
+			System.out.println();
+			teachers[i].showInfo();
+		}
+	}
+}
+[8]
+import java.io.*;
+import java.util.Date;
+
+public abstract class Patron implements IBasicOperations{
+	private String ID;
+	private String name;
+	private String departmentName;
+	private String email;
+	private String contactNo;
+	private String address;
+	private Book borrowBookList[] = new Book [5];
+	private int booksBorrowed;
+	
+	public Patron() {
+		super();
+	}
+	public Patron(String iD, String name, String departmentName, String email, String contactNo, String address,
+			int booksBorrowed) {
+		super();
+		ID = iD;
+		this.name = name;
+		this.departmentName = departmentName;
+		this.email = email;
+		this.contactNo = contactNo;
+		this.address = address;
+		this.booksBorrowed = booksBorrowed;
+	}
+	public String getID() {
+		return ID;
+	}
+	public void setID(String iD) {
+		ID = iD;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public double getBooksBorrowed() {
+		return booksBorrowed;
+	}
+	public void setBooksBorrowed(int booksBorrowed) {
+		this.booksBorrowed = booksBorrowed;
+	}
+	public Book[] getBorrowBookList() {
+		return borrowBookList;
+	}
+	public void setBorrowBookList(Book[] borrowBookList) {
+		this.borrowBookList = borrowBookList;
+	}
+	@Override
+	public void returnBook(Book b) {
+		if(booksBorrowed > 0) {
+			int i;
+			for(i=0; i<booksBorrowed; i++) {
+				if(borrowBookList[i].getId() == b.getId())
+					break;
+				else if(i == booksBorrowed) {
+					System.out.println("Given book id doesn't match with any book id in borrowed book list.");
+					return;
+				}
+			}
+			System.out.println("Returning the book ........Writing into file..");
+			try {
+				Date date = new Date();
+				File returnFile = new File("Return.txt");
+				if(!returnFile.exists())
+					returnFile.createNewFile();
+				
+				b.noOfCopy--;
+				FileWriter fr = new FileWriter(returnFile,true);
+				PrintWriter returnOutput = new PrintWriter(fr);
+				returnOutput.print("ID : "+ID+" Name : "+name+" Email : "+email+" Address : "+address+" Contact : "
+				+contactNo+"\nBook Id : "+b.getId()+" Author :"+b.getAuthorName()+" Title : "+b.getTitle()+"\nDate : "+date.toString()+"\n");
+				
+				borrowBookList[i] = borrowBookList[booksBorrowed-1];
+				borrowBookList[booksBorrowed-1] = null;
+				booksBorrowed--;
+				fr.close();
+				System.out.println("Successfully Written into file.");
+			}
+			catch(Exception ex) {
+				System.out.println("Error! Couldn't write into file.");
+			}
+		}
+		else 
+			System.out.println("No books borrowed. So you can't return.");
+	}
+	@Override
+	public void borrowBook(Book b) {
+		if(booksBorrowed <= 5) {
+			System.out.println("Borrowing the book ........Writing into file..");
+			try {
+				Date date = new Date();
+				File borrowFile = new File("Borrow.txt");
+				if(!borrowFile.exists())
+					borrowFile.createNewFile();
+				
+				b.noOfCopy--;
+				FileWriter fr = new FileWriter(borrowFile,true);
+				PrintWriter borrowOutput = new PrintWriter(fr);
+				borrowOutput.print("ID : "+ID+" Name : "+name+" Email : "+email+" Address : "+address+" Contact : "
+						+contactNo+"\nBook Id : "+b.getId()+" Author :"+b.getAuthorName()+" Title : "+b.getTitle()+"\nDate : "+date.toString()+"\n");
+						
+				fr.close();
+				System.out.println("Successfully Written into file.");
+				borrowBookList[booksBorrowed] = b;
+				booksBorrowed++;
+			}
+			catch(Exception ex) {
+				System.out.println("Error! Couldn't write into file.");
+			}
+		}
+		else 
+			System.out.println("No more books can be borrowed.");
+	}
+	public abstract void showInfo();
+	
+}
+[9]
+public class Student extends Patron{
+	private String guardianName;
+	private String guardianContactNo;
+	
+	public Student() {
+		super();
+	}
+	public Student(String guardianName, String guardianContactNo) {
+		super();
+		this.guardianName = guardianName;
+		this.guardianContactNo = guardianContactNo;
+	}
+	public Student(String iD, String name, String departmentName, String email, String contactNo, String address,
+			int booksBorrowed, String guardianName, String guardianContactNo) {
+		super(iD, name, departmentName, email, contactNo, address, booksBorrowed);
+		this.guardianName = guardianName;
+		this.guardianContactNo = guardianContactNo;
+	}
+	public String getGuardianName() {
+		return guardianName;
+	}
+	public void setGuardianName(String guardianName) {
+		this.guardianName = guardianName;
+	}
+	public String getGuardianContactNo() {
+		return guardianContactNo;
+	}
+	public void setGuardianContactNo(String guardianContactNo) {
+		this.guardianContactNo = guardianContactNo;
+	}
+	@Override
+	public void showInfo() {
+		System.out.println("Student Information : ");
+		System.out.print("Name : "+getName()+"\nID : "+getID()+"\nDepartment Name : "+getDepartmentName()+
+				"\nEmail : "+getEmail()+"\nContact : "+getContactNo()+"\nAddress : "+getAddress()+"\nGuardian Name :"
+				+guardianName+"\nGuardian Contact No : "+guardianContactNo+"\n");
+	}
+}
+[10]
+public class Teacher extends Patron{
+	private int officeRoomNo;
+
+	public Teacher() {
+		super();
+	}
+	public Teacher(int officeRoomNo) {
+		super();
+		this.officeRoomNo = officeRoomNo;
+	}
+	public Teacher(String iD, String name, String departmentName, String email, String contactNo, String address,
+			int booksBorrowed, int officeRoomNo) {
+		super(iD, name, departmentName, email, contactNo, address, booksBorrowed);
+		this.officeRoomNo = officeRoomNo;
+	}
+	public void setOfficeRoomNo (int  officeRoomNo ) {
+		this.officeRoomNo = officeRoomNo;
+	}
+	public int  getOfficeRoomNo() {
+		return officeRoomNo;
+	}
+	@Override
+	public void showInfo() {
+		System.out.println("Teacher Information : ");
+		System.out.print("Name : "+getName()+"\nID : "+getID()+"\nDepartment Name : "+getDepartmentName()+
+				"\nEmail : "+getEmail()+"\nContact : "+getContactNo()+"\nAddress : "+getAddress()+"\nOffice No : "+officeRoomNo+"\n");
+	}
+}
+[11]
+import java.util.Scanner;
+
+public class Start {
+	private static Scanner input;
+	private  static Library library;
+	public static void main(String[] args) {
+		
+		Book books[] = new Book[10];
+		books[0] = new Book(100,"C Programming","Beginners guide","Dennis Ritche","ABC publisher",199.99,5);
+		books[1] = new Book(101,"Introduction To Java","Beginner to Expert","Y Daniel Liang","Pearson",249.99,10);
+		books[2] = new Book(105,"Calculus","Early Transcendentals","Howard Anton","WILEY Publisher",149.99,7);
+		
+		Teacher teachers[] = new Teacher[10];
+		teachers[0] = new Teacher("101-1001","John Smith","CSE","johnsmith@gmail.com","919-217-001","Dhaka-1200",0,1208);
+		teachers[1] = new Teacher("101-1002","David Warner","CSE","davidwarner@gmail.com","929-217-119","Dhaka-1230",0,1211);
+		teachers[2] = new Teacher("110-1009","John Doe","MATH","johndoe19@gmail.com","910-017-986","Dhaka-1229",0,1205);
+
+		Student students[] = new Student[10];
+		students[0] = new Student("042","Alam Morium","CSE","alammorium07@gmail.com","0138778685","Dhaka-1230",0,"MD Alam","014324434");
+		students[1] = new Student("045","Nazmul Hasan","CSE","nhnazmulhasan085@gmail.com","0136598685","Dhaka-1229",0,"MD Ismail","01435434");
+		students[2] = new Student("043","Leo Messi","EEE","leomessi@gmail.com","54545459","Dhanmondi-30",0,"George Messi","85854504");
+
+		Librarian lib = new Librarian("Bruce Lee","102030",35000,39);
+		library = new Library("AIUB Library","AIUB campus",students,teachers,books,lib);
+		library.setNoOfBooks(3);
+		library.setNoOfStudents(3);
+		library.setNoOfTeachers(3);
+		
+		menu();
+		System.out.println("\n\n           THANKS FOR USING\n\n");
+		System.out.println("\n\n           By- Alam Morium\n\n");
+	}
+	
+	public static void menu() {
+		input = new Scanner(System.in);
+		System.out.println("\n_______________MENU_________________ ");
+		System.out.print("1.	Student Management\r\n" + 
+				"2.	Teacher Management\r\n" + 
+				"3.	Book Management\r\n" + 
+				"4.	Borrow/ Return management\r\n" + 
+				"5.	Exit [ Press any  key except 1,2,3,4] \r\n" + 
+				"Enter your choice : ");
+		int choice = input.nextInt();	
+		switch(choice) {
+		       case 1 : studentManagement(); break;
+		       case 2 : teacherManagement(); break;
+		       case 3 : bookManagement(); break;
+		       case 4 : borrowReturnManagement(); break;
+		       default :  return;
+		}
+	}
+	
+	public static void studentManagement() {
+		System.out.println("\n_____STUDENT MANAGEMENT____");
+		System.out.print("1. Insert New Student \n2. Remove Existing Student	\n3. Show All Student\nPress any other key to go to main menu......"
+				+ "\nEnter your choice : ");
+		int choice = input.nextInt();
+		input.nextLine();
+		switch(choice) {
+		       case 1 : System.out.println("\nEnter Student Info ........................");
+		                      System.out.print("Name ? ");
+		                      String name = input.nextLine();
+		                      System.out.print("ID ? ");
+		                      String id = input.nextLine();
+		                      System.out.print("Department ? ");
+		                      String dept = input.nextLine();
+		                      System.out.print("Email ? ");
+		                      String email = input.nextLine();
+		                      System.out.print("Contact No ? ");
+		                      String conNo = input.nextLine();
+		                      System.out.print("Address ? ");
+		                      String address = input.nextLine();
+		                      System.out.print("Guardian Name ? ");
+		                      String gName = input.nextLine();
+		                      System.out.print("Guardian Contact ? ");
+		                      String gCon = input.nextLine();
+		                      Student newStudent = new Student(id,name,dept,email,conNo,address,0,gName,gCon);
+		                      System.out.println();
+		                      library.insertStudent(newStudent);
+		                      studentManagement();
+		                      break;
+		       case 2 : System.out.print("Enter Student Id to remove : ");
+		                      String sid = input.nextLine();
+		                      Student student = library.getStudent(sid);
+		                      System.out.println();
+		                      if(student!=null) {
+		                    	  library.removeStudent(student);
+		                      } 
+		                      System.out.println();
+		                      studentManagement();
+		                      break;
+		       case 3 : System.out.println("\nShowing All  Students :");
+		    	              library.showAllStudents();
+		                      System.out.println();
+		                     studentManagement();
+		                      break;
+		       default : menu();                
+		}
+	}
+	
+	public static void teacherManagement() {
+		System.out.println("\n_____TEACHER MANAGEMENT____");
+		System.out.print("1. Insert New Teacher \n2. Remove Existing Teacher	\n3. Show All Teacher\nPress any other key to go to main menu......"
+				+ "\nEnter your choice : ");
+		int choice = input.nextInt();
+		input.nextLine();
+		switch(choice) {
+		       case 1 : System.out.println("\nEnter Teacher Info ........................");
+		                      System.out.print("Name ? ");
+		                      String name = input.nextLine();
+		                      System.out.print("ID ? ");
+		                      String id = input.nextLine();
+		                      System.out.print("Department ? ");
+		                      String dept = input.nextLine();
+		                      System.out.print("Email ? ");
+		                      String email = input.nextLine();
+		                      System.out.print("Contact No ? ");
+		                      String conNo = input.nextLine();
+		                      System.out.print("Address ? ");
+		                      String address = input.nextLine();
+		                      System.out.print("Office Room ? ");
+		                      int officeRoom = input.nextInt();
+		                      Teacher newTeacher = new Teacher(id,name,dept,email,conNo,address,0,officeRoom);
+		                      System.out.println();
+		                      library.insertTeacher(newTeacher);
+		                      teacherManagement();
+		                      break;
+		       case 2 : System.out.print("Enter Teacher Id to remove : ");
+		                      String tid = input.nextLine();
+		                      Teacher teacher = library.getTeacher(tid);
+		                      System.out.println();
+		                      if(teacher!=null) {
+		                    	  library.removeTeacher(teacher);
+		                      } 
+		                      System.out.println();
+		                      teacherManagement();
+		                      break;
+		       case 3 : System.out.println("\nShowing All  Teachers :");
+		    	              library.showAllTeachers();
+		                      System.out.println();
+		                      teacherManagement();
+		                      break;
+		       default : menu();                
+		}
+	}
+	
+	public static void bookManagement() {
+		System.out.println("\n_____BOOK MANAGEMENT____");
+		System.out.print("1. Insert New Book \n2. Remove Existing Book	\n3. Show All Books\nPress any other key to go to main menu......"
+				+ "\nEnter your choice : ");
+		int choice = input.nextInt();
+		input.nextLine();
+		switch(choice) {
+		       case 1 : System.out.println("\nEnter Book Info ........................");
+		                      System.out.print("Title ? ");
+		                      String title = input.nextLine();
+		                      System.out.print("Subtitle ? ");
+		                      String subtitle = input.nextLine();
+		                      System.out.print("Author ? ");
+		                      String author = input.nextLine();
+		                      System.out.print("Publisher ? ");
+		                      String publisher = input.nextLine();
+		                      System.out.print("Book ID ? ");
+		                      int id = input.nextInt();
+		                      System.out.print("Number of copies ? ");
+		                      int noCopies = input.nextInt();
+		                      System.out.print("Price ? ");
+		                      double price = input.nextDouble();
+		                      Book newBook = new Book(id,title,subtitle,author,publisher,price,noCopies);
+		                      System.out.println();
+		                      library.insertBook(newBook);
+		                      bookManagement();
+		                      break;
+		       case 2 : System.out.print("Enter Book Id to remove : ");
+		                      int bid = input.nextInt();
+		                      Book book = library.getBook(bid);
+		                      System.out.println();
+		                      if(book!=null) {
+		                    	  library.removeBook(book);
+		                      } 
+		                      System.out.println();
+		                      bookManagement();
+		                      break;
+		       case 3 : System.out.println("\nShowing All  Books :");
+		    	              library.showAllBooks();
+		                      System.out.println();
+		                      bookManagement();
+		                      break;
+		       default : menu();                
+		}
+	}
+	
+	public static void borrowReturnManagement() {
+		System.out.println("\n_____BOOK MANAGEMENT____");
+		System.out.print("1. Borrow Book \n2. Return Book \nPress any other key to go to main menu......"
+				+ "\nEnter your choice : ");
+		int choice = input.nextInt();
+		input.nextLine();
+		switch(choice) {
+		        case 1 : System.out.print("Book will be borrowed by ? \n1. Teacher 2. Student\n");
+		                        int borrower = input.nextInt();
+		                        input.nextLine();
+		                        if(borrower == 1) {
+		                        	System.out.print("Enter Teacher ID : ");
+		                        	String tid = input.nextLine();
+		                        	Teacher teacher = library.getTeacher(tid);
+		                        	System.out.print("Enter book ID : ");
+		                        	int bid = input.nextInt();
+		                        	Book book = library.getBook(bid);
+		                        	
+		                        	if(teacher != null && book != null) {
+		                        		teacher.borrowBook(book);
+			                        	System.out.println("\nProcess Completed........\n");
+		                        	}
+		                        	else
+		                        		System.out.println("Can't borrow book. Invalid teacher or Book id.");
+		                        }
+		                        else if(borrower == 2) {
+		                        	System.out.print("Enter Student ID : ");
+		                        	String sid = input.nextLine();
+		                        	Student student = library.getStudent(sid);
+		                        	System.out.print("Enter book ID : ");
+		                        	int bid = input.nextInt();
+		                        	Book book = library.getBook(bid);
+		                        	
+		                        	if(student != null && book != null) {
+		                        		student.borrowBook(book);
+			                        	System.out.println("\nProcess Completed........\n");
+		                        	}
+		                        	else
+		                        		System.out.println("Can't borrow book. Invalid student or Book id.");
+		                        }
+		                        else {
+		                        	System.out.println("Wrong input.");
+		                        }
+		                        borrowReturnManagement();
+		                        break;
+		        
+		        case 2 :  System.out.print("Book will be returned by ? \n1. Teacher 2. Student\n");
+                                 int returner = input.nextInt();
+                                 input.nextLine();
+                                 
+                                 if(returner == 1) {
+                                	      System.out.print("Enter book ID : ");
+           	                              int bid = input.nextInt();
+           	                              System.out.println(bid);
+           	                              Book book = library.getBook(bid);
+           	                              System.out.println("OKK");
+                	                      System.out.print("Enter Teacher ID : ");
+                	                      String tid = input.nextLine();
+                	                      Teacher teacher = library.getTeacher(tid);
+                	                      
+                	                      if(teacher != null && book != null) {
+                	                    	  teacher.returnBook(book);
+                    	                      System.out.println("\nProcess Completed........\n");
+                	                      }
+                	                      else
+                	                    	  System.out.println("Invalid book id or teacher id");
+                                  }
+                                   else if(returner == 2) {
+                	                       System.out.print("Enter Student ID : ");
+                                       	   String sid = input.nextLine();
+                	                       Student student = library.getStudent(sid);
+                	                       System.out.print("Enter book ID : ");
+                	                       int bid = input.nextInt();
+                	                       Book book = library.getBook(bid);
+                	                       
+                	                       if(student != null && book != null) {
+                	                    	   student.returnBook(book);
+                    	                       System.out.println("\nProcess Completed........\n");
+                	                       }
+                	                       else
+                	                    	   System.out.println("Invalid book id or student id");
+                                  }
+                                  else {
+                	                        System.out.println("Wrong input.");
+                                  }
+                                 borrowReturnManagement();
+                                  break;      
+		        default : menu();                                           
+		}
+	}
+}
+
+
